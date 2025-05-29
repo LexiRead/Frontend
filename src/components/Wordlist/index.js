@@ -10,7 +10,7 @@ import view from "../../assets/icons/viewlist.png";
 import target from "../../assets/icons/target.png";
 const Wordlist = () => {
     return (
-        <div>
+        <div className="trans">
             <div class="word-list">
             <div class="div">
                 <div class="frame-wrapper">

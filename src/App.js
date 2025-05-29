@@ -7,6 +7,13 @@ import Community from "./components/Community/index";
 import Lexibot from "./components/Lexibot/index";
 import Translate from "./components/Translate/index";
 import Wordlist from "./components/Wordlist/index";
+import Login from './components/Login';
+import Signup from './components/Sign Up/index';
+import Forgetpass from './components/Forgetpass/index';
+import OTP from './components/OTP/index';
+import OCR from "./components/OCR/index"
+import Profile from './components/Profile/index';
+
 function App() {
   return (
     <div className="App">
@@ -18,6 +25,12 @@ function App() {
         <Route path="/wordlist" element={<Wordlist />} />
         <Route path="/community" element={<Community />} />
         <Route path="/lexibot" element={<Lexibot />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forget-password" element={<Forgetpass />} />
+        <Route path="/otp" element={<OTP />} />
+        <Route path="/ocr" element={<OCR />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>
     </div>
