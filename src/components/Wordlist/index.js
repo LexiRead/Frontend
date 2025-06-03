@@ -8,74 +8,94 @@ import gmail from "../../assets/icons/gmail.png";
 import instgram from "../../assets/icons/instgram.png";
 import view from "../../assets/icons/viewlist.png";
 import target from "../../assets/icons/target.png";
+
 const Wordlist = () => {
+    const openMemorizedPage = () => {
+        window.open("/memorized", "_blank");
+    };
+
+    const openMCQPage = () => {
+        window.open("/mcq", "_blank");
+    };
+
     return (
         <div className="trans">
-            <div class="word-list">
-            <div class="div">
-                <div class="frame-wrapper">
-                <div class="frame-8">
-                    <div class="frame-9">
-                    <div class="group">
-                        <img class="group" src={logo} />
-                        <div class="lexi-read">
-                        <img class="vector" src="img/vector-11.png" />
-                        <img class="img" src="img/vector-5.png" />
-                        <img class="vector-2" src="img/vector-8.png" />
-                        <img class="vector-3" src="img/vector-15.png" />
-                        <img class="vector-4" src="img/vector-9.png" />
-                        <img class="vector-5" src="img/vector-6.png" />
-                        <img class="vector-6" src="img/vector-4.png" />
-                        <img class="vector-7" src="img/vector-14.png" />
+            <div className="word-list">
+                <div className="div">
+                    <div className="frame-wrapper">
+                        <div className="frame-8">
+                            <div className="frame-9">
+                                <div className="group">
+                                    <img className="group" src={logo} alt="Logo" />
+                                    <div className="lexi-read">
+                                        <img className="vector" src="img/vector-11.png" alt="Vector 11" />
+                                        <img className="img" src="img/vector-5.png" alt="Vector 5" />
+                                        <img className="vector-2" src="img/vector-8.png" alt="Vector 8" />
+                                        <img className="vector-3" src="img/vector-15.png" alt="Vector 15" />
+                                        <img className="vector-4" src="img/vector-9.png" alt="Vector 9" />
+                                        <img className="vector-5" src="img/vector-6.png" alt="Vector 6" />
+                                        <img className="vector-6" src="img/vector-4.png" alt="Vector 4" />
+                                        <img className="vector-7" src="img/vector-14.png" alt="Vector 14" />
+                                    </div>
+                                </div>
+                                <p className="p">
+                                    OurStudio is a digital agency UI / UX Design and Website Development located in Ohio, United States of
+                                    America OurStudio
+                                </p>
+                            </div>
+                            <div className="frame-9">
+                                <div className="text-wrapper-4">Follow Us</div>
+                                <div className="frame-10">
+                                    <div className="frame-11">
+                                        <img className="img-2" src={face} alt="Facebook" />
+                                        <p className="text-wrapper-5">8819 Ohio St. South Gate, CA</p>
+                                    </div>
+                                    <div className="frame-6">
+                                        <img className="img-2" src={gmail} alt="Gmail" />
+                                        <div className="text-wrapper-5">Ourstudio@hello.com</div>
+                                    </div>
+                                    <div className="frame-6">
+                                        <img className="img-2" src={instgram} alt="Instagram" />
+                                        <div className="text-wrapper-5">+1 386-688-3295</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="frame-12">
+                                <div className="div-wrapper"><div className="text-wrapper-6">About us</div></div>
+                                <div className="frame-13"><div className="text-wrapper-6">Terms and Conditions</div></div>
+                                <div className="frame-13"><div className="text-wrapper-6">Privacy Policy</div></div>
+                            </div>
                         </div>
                     </div>
-                    <p class="p">
-                        OurStudio is a digital agency UI / UX Design and Website Development located in Ohio, United States of
-                        America OurStudio
-                    </p>
-                    </div>
-                    <div class="frame-9">
-                    <div class="text-wrapper-4">Follow Us</div>
-                    <div class="frame-10">
-                        <div class="frame-11">
-                        <img class="img-2" src={face} />
-                        <p class="text-wrapper-5">8819 Ohio St. South Gate, CA</p>
-                        </div>
-                        <div class="frame-6">
-                        <img class="img-2" src={gmail} />
-                        <div class="text-wrapper-5">Ourstudio@hello.com</div>
-                        </div>
-                        <div class="frame-6">
-                        <img class="img-2" src={instgram} />
-                        <div class="text-wrapper-5">+1 386-688-3295</div>
+                    <div 
+                        className="frame-14" 
+                        onClick={openMemorizedPage} 
+                        style={{ cursor: "pointer" }}
+                    >
+                        <img className="view-list-svgrepo" src={view} alt="View List" />
+                        <div className="frame-15">
+                            <div className="text-wrapper-7">Memorized Words</div>
+                            <p className="text-wrapper-8">Words memorized from reading books</p>
                         </div>
                     </div>
+                    <div className="frame-16">
+                        <img className="target-svgrepo-com" src={target} alt="Target" />
+                        <div className="frame-17"><p className="text-wrapper-9">Exercises on words memorized from books</p></div>
+                        <div className="frame-18">
+                            <div 
+                                className="frame-19" 
+                                onClick={openMCQPage} 
+                                style={{ cursor: "pointer" }}
+                            >
+                                <div className="text-wrapper-10">MCQ</div>
+                            </div>
+                            <div className="frame-20"><div className="text-wrapper-10">Flash card</div></div>
+                        </div>
                     </div>
-                    <div class="frame-12">
-                    <div class="div-wrapper"><div class="text-wrapper-6">About us</div></div>
-                    <div class="frame-13"><div class="text-wrapper-6">Terms and Conditions</div></div>
-                    <div class="frame-13"><div class="text-wrapper-6">privacy policy</div></div>
-                    </div>
                 </div>
-                </div>
-                <div class="frame-14">
-                <img class="view-list-svgrepo" src={view} />
-                <div class="frame-15">
-                    <div class="text-wrapper-7">Memorized Words</div>
-                    <p class="text-wrapper-8">Words memorized from reading books</p>
-                </div>
-                </div>
-                <div class="frame-16">
-                <img class="target-svgrepo-com" src={target} />
-                <div class="frame-17"><p class="text-wrapper-9">Exercises on words memorized from books</p></div>
-                <div class="frame-18">
-                    <div class="frame-19"><div class="text-wrapper-10">MCQ</div></div>
-                    <div class="frame-20"><div class="text-wrapper-10">Flash card</div></div>
-                </div>
-                </div>
-            </div>
             </div>
         </div>
     );
 };
+
 export default Wordlist;

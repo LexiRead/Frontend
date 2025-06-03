@@ -18,10 +18,10 @@ const Profile = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [showInputs, setShowInputs] = useState(false);
-  const [name, setName] = useState("Abdo Zaki");
-  const [email, setEmail] = useState("Zeko@example.com");
+  const [name, setName] = useState(localStorage.getItem("userName") || "Abdo Zaki");
+  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "Zeko@example.com");
   const [avatar, setAvatar] = useState(null);
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState(localStorage.getItem("avatarUrl") || "");
   const [showNameInput, setShowNameInput] = useState(false);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [showAvatarInput, setShowAvatarInput] = useState(false);
@@ -152,6 +152,9 @@ const Profile = () => {
 
       if (response.ok) {
         setMessage("Profile updated successfully!");
+        localStorage.setItem("userName", data.data.name); // تحديث الـ localStorage
+        localStorage.setItem("userEmail", data.data.email);
+        localStorage.setItem("avatarUrl", data.data.avatar || ""); // تحديث الـ avatarUrl
         setName(data.data.name);
         setEmail(data.data.email);
         setAvatarUrl(data.data.avatar || "");
@@ -181,10 +184,10 @@ const Profile = () => {
               onClick={() => setShowAvatarInput(true)}
               style={{
                 cursor: "pointer",
-                width: "192px", // نفس عرض .overlap
-                height: "192px", // نفس ارتفاع .overlap
-                borderRadius: "1000px", // شكل دائري
-                objectFit: "cover", // بديل لـ background-size: cover
+                width: "192px",
+                height: "192px",
+                borderRadius: "1000px",
+                objectFit: "cover",
                 position: "absolute",
                 top: "0",
                 left: "0",
@@ -195,7 +198,7 @@ const Profile = () => {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setAvatar(e.target.files[0])}
-                style={{ marginTop: "200px" }} // نزلنا الـ input تحت الصورة
+                style={{ marginTop: "200px" }}
               />
             )}
           </div>

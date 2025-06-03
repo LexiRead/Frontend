@@ -11,8 +11,13 @@ import Login from './components/Login';
 import Signup from './components/Sign Up/index';
 import Forgetpass from './components/Forgetpass/index';
 import OTP from './components/OTP/index';
-import OCR from "./components/OCR/index"
+import OCR from "./components/OCR/index";
+import Lang from "./components/Lang/index";
+import La from "./components/Lang-ar/index";
 import Profile from './components/Profile/index';
+import ResetPassword from "./components/Resetpass/index";
+import Memorized from './components/Memorized';
+import MCQ from "./components/MCQ/index";
 
 function App() {
   return (
@@ -29,7 +34,12 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/forget-password" element={<Forgetpass />} />
         <Route path="/otp" element={<OTP />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/lang" element={<Lang />} />
+        <Route path="/lang-ar" element={<La />} />
         <Route path="/ocr" element={<OCR />} />
+        <Route path="/memorized" element={<Memorized />} />
+        <Route path="/mcq" element={<MCQ />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </Router>

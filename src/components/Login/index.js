@@ -62,7 +62,7 @@ const Login = () => {
       if (response.ok) {
         // Save token and user data
         localStorage.setItem("authToken", data.data.token);
-        localStorage.setItem("userName", data.data.name);
+        localStorage.setItem("userName", data.data.name); // حفظ الـ name كـ userName
         localStorage.setItem("userEmail", data.data.email);
 
         // Handle "Remember Me"
@@ -76,7 +76,7 @@ const Login = () => {
 
         setMessage("Login successful! Redirecting...");
         setTimeout(() => {
-          navigate("/profile"); // تغيير من /dashboard لـ /profile
+          navigate("/profile");
         }, 1000);
       } else {
         setMessage(data.message || "Failed to login. Please try again.");

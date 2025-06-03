@@ -80,7 +80,7 @@ const Signup = () => {
     formDataToSend.append("password_confirmation", formData.password_confirmation);
 
     try {
-      const response = await fetch("http://app.elfar5a.com/api/auth/register", { // تغيير الـ URL للدومين الجديد
+      const response = await fetch("http://app.elfar5a.com/api/auth/register", {
         method: "POST",
         headers: {
           "Accept": "application/json",
@@ -93,6 +93,9 @@ const Signup = () => {
 
       if (response.ok) {
         localStorage.setItem("authToken", data.data.token);
+        localStorage.setItem("userName", data.data.name);
+        localStorage.setItem("userEmail", data.data.email);
+
         setMessage("Registration successful! Welcome, " + data.data.name);
         setFormData({
           username: "",

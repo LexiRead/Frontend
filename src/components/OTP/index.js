@@ -71,10 +71,38 @@ const OTP = () => {
       return;
     }
 
-    // التحقق من الـ OTP الثابت (1462)
+    // التحقق من الـ OTP الثابت (1462) وبعثه للـ API
     if (otpCode === "1462") {
-      setMessage("OTP Verified. You can now reset your password.");
-      setTimeout(() => navigate("/reset-password", { state: { email } }), 1000);
+      setMessage("Verifying OTP...");
+      try {
+        const response = await fetch("http://app.elfar5a.com/api/auth/verifyOtp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+          },
+          body: JSON.stringify({ email, code: "1462" }), // إرسال OTP ثابت 1462
+        });
+
+        const data = await response.json();
+        console.log("Verify OTP Response:", data, "Status:", response.status);
+
+        if (response.ok) {
+          const resetToken = data.data?.reset_token; // استخراج الـ reset_token من data.reset_token
+          if (!resetToken) {
+            setMessage("Reset token not provided by server. Response: " + JSON.stringify(data));
+            setLoading(false);
+            return;
+          }
+          setMessage("OTP Verified. You can now reset your password.");
+          setTimeout(() => navigate("/reset-password", { state: { email, resetToken } }), 1000);
+        } else {
+          setMessage(data.message || "Invalid OTP. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setMessage("An error occurred. Please try again later: " + error.message);
+      }
     } else {
       setMessage("Invalid OTP. Please try again. (Hint: The OTP is 1462)");
     }
