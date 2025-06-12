@@ -337,8 +337,10 @@ body {
     /* width: 100%; */
     /* margin-left: 100px; */
     /* height: 461px; */
-    background-color: #eef2ff; /* مثال للون خلفية القسم */
-    padding: 60px ; /* مثال للحشو */
+    background-color: #eef2ff;
+     /* مثال للون خلفية القسم */
+    padding: 60px ; 
+    /* مثال للحشو */
     overflow: visible; /* هام جداً: للسماح بالفيضان */
     position: relative; /* يمكن أن يكون هنا أو في .app-promo-content */
   }
@@ -346,16 +348,20 @@ body {
   .app-promo-content {
     display: flex; /* استخدام flexbox لتنظيم النص والصورة */
     align-items: center; /* محاذاة العناصر عمودياً */
-    justify-content: space-around; /* توزيع المساحة */
-    position: relative; /* هام جداً: ليكون مرجعاً لـ position: absolute */
-    max-width: 1100px; /* مثال لعرض الحاوية */
+    justify-content: space-around; 
+    /* توزيع المساحة */
+    /* position: relative;  */
+    /* هام جداً: ليكون مرجعاً لـ position: absolute */
+    /* max-width: 1100px;  */
+    /* مثال لعرض الحاوية */
     margin: 0 auto; /* لتوسيط الحاوية */
+    /* width: 90%; */
   }
   
   .app-promo-image {
     position: absolute; /* جعله يطفو */
     top: -120px;       /* رفعه للأعلى خارج حدود الأب (عدّل القيمة حسب الحاجة) */
-    left: 100px;       /* تحريكه لليسار (عدّل القيمة حسب الحاجة) */
+    left: 300px;       /* تحريكه لليسار (عدّل القيمة حسب الحاجة) */
     width: 280px;     /* مثال لعرض حاوية الهاتف (عدّل حسب الحاجة) */
     z-index: 10;      /* تأكد من ظهوره فوق العناصر الأخرى */
   }
@@ -367,24 +373,31 @@ body {
     transform: rotate(-17.3deg); /* الدوران (استخدم قيمة سالبة إذا كان الدوران بالعكس) */
     /* إضافة ظل لتعزيز الإحساس بالعمق (اختياري) */
     filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.2));
+    position: relative;
+    top: 50px;
   }
   
   .app-promo-text {
-    color: red;
+    /* color: red; */
     /* يمكن إضافة هامش يسار لإبعاد النص عن منطقة الصورة المطلقة */
     /* أو استخدام خصائص flex/grid لترتيب العناصر */
     flex-basis: 50%; 
     position: relative;
-    left: 80px;
-    /* مثال: إعطاء النص نصف المساحة */
-    padding-left: 150px; /* مثال: إضافة حشو لليسار */
-    z-index: 10; /* تأكد من أن z-index أقل من الهاتف إذا كان هناك تداخل */
+    left: 50px;
+    /* width: 30000%; */
+    padding-left: 150px; 
+    z-index: 10; 
   }
   .app-promo-text h2{
     color: #29436D;
+    font-size: xx-large;
+    padding: 5px;
   }
   .app-promo-text p{
     color: #121B6B;
+    font-size: large;
+    padding: 5px;
+
   }
   .app-store-buttons img {
     height: 40px; /* مثال لحجم أزرار المتجر */
