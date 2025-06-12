@@ -3,6 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar  from "./components/Navbar/index";
 import Footer from "./components/Footer/index";
 import Home from "./components/Home/index";
+
+import BookListPage from "../src/components/Books/components copy/BookList"; 
+import BookDetailPage  from './components/Books/pages/BookDetailPage';
+import BookDetail2ex  from  './components/Books/components copy/BookDetail2ex';
+import BookReader from './components/Books/pages/BookReader';
+
 import Community from "./components/Community/index";
 import Lexibot from "./components/Lexibot/index";
 import Translate from "./components/Translate/index";
@@ -26,6 +32,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route path="/books" element={<BookListPage />} />
+        <Route path="/book/:bookId" element={<BookDetailPage />} />
+        <Route path="/book2/:bookId" element={<BookDetail2ex/>} />
+        <Route path="/reader/:bookId" element={<BookReader />} />
+
         <Route path="/translate" element={<Translate />} />
         <Route path="/wordlist" element={<Wordlist />} />
         <Route path="/community" element={<Community />} />
