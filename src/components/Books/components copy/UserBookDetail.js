@@ -10,7 +10,7 @@ import leftArrow from "../picture/arrow-left.png";
 const API_BASE_URL = "http://app.elfar5a.com";
 const USER_TOKEN = localStorage.getItem("authToken");
 
-const BookDetail2ex = () => {
+const UserBookDetail = () => {
   const { bookId } = useParams();
   const navigate = useNavigate();
   const [book, setBook] = useState(null);
@@ -229,4 +229,4 @@ const BookDetail2ex = () => {
   );
 };
 
-export default BookDetail2ex;
+export default UserBookDetail;

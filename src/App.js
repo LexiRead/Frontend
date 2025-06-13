@@ -6,7 +6,7 @@ import Home from "./components/Home/index";
 
 import BookListPage from "../src/components/Books/components copy/BookList";
 import BookDetailPage from "./components/Books/pages/BookDetailPage";
-import BookDetail2ex from "./components/Books/components copy/BookDetail2ex";
+import UserBookDetail from "./components/Books/components copy/UserBookDetail";
 import BookReader from "./components/Books/pages/BookReader";
 
 import Community from "./components/Community/index";
@@ -35,7 +35,7 @@ function App() {
 
           <Route path="/books" element={<BookListPage />} />
           <Route path="/book/:bookId" element={<BookDetailPage />} />
-          <Route path="/user/:bookId" element={<BookDetail2ex />} />
+          <Route path="/user/:bookId" element={<UserBookDetail />} />
           <Route path="/reader/:bookId" element={<BookReader />} />
 
           <Route path="/translate" element={<Translate />} />
