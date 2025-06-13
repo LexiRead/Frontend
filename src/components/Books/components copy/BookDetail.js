@@ -1,11 +1,10 @@
-
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import BookCard from './BookCard';
-import '../styles.css';
-import rightArrow from '../picture/arrow-right.png';
-import leftArrow from '../picture/arrow-left.png';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import BookCard from "./BookCard";
+import "../styles.css";
+import rightArrow from "../picture/arrow-right.png";
+import leftArrow from "../picture/arrow-left.png";
 
 const API_BASE_URL = "http://app.elfar5a.com";
 const USER_TOKEN = localStorage.getItem("authToken");
@@ -24,51 +23,66 @@ const BookDetail = () => {
     setError(null);
 
     try {
-      const response = await axios.get(`${API_BASE_URL}/api/document/explore-gutendex?ids=${bookId}&t=${Date.now()}`, {
-        headers: {
-          Authorization: `Bearer ${USER_TOKEN}`,
-          Accept: 'application/json',
-          'Cache-Control': 'no-cache',
-        },
-      });
+      const response = await axios.get(
+        `${API_BASE_URL}/api/document/explore-gutendex?ids=${bookId}&t=${Date.now()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${USER_TOKEN}`,
+            Accept: "application/json",
+            "Cache-Control": "no-cache",
+          },
+        }
+      );
       console.log("BookDetail API Response:", response.data); // Debug
       const results = response?.data?.data?.results || [];
-      const apiBook = results.find(result => (result.book_id || result.id) === parseInt(bookId));
+      const apiBook = results.find(
+        (result) => (result.book_id || result.id) === parseInt(bookId)
+      );
       console.log("Selected Book:", apiBook); // Debug
 
       if (apiBook) {
         const downloadLinks = apiBook.download_links || {};
-        let fileUrl = '';
-        let fileType = '';
-        if (downloadLinks['application/pdf']) {
-          fileUrl = downloadLinks['application/pdf'];
-          fileType = 'application/pdf';
-        } else if (downloadLinks['text/plain']) {
-          fileUrl = downloadLinks['text/plain'];
-          fileType = 'text/plain';
-        } else if (downloadLinks['text/html']) {
-          fileUrl = downloadLinks['text/html'];
-          fileType = 'text/html'; // Fallback to HTML if no better option
+        let fileUrl = "";
+        let fileType = "";
+        if (downloadLinks["application/pdf"]) {
+          fileUrl = downloadLinks["application/pdf"];
+          fileType = "application/pdf";
+        } else if (downloadLinks["text/plain"]) {
+          fileUrl = downloadLinks["text/plain"];
+          fileType = "text/plain";
+        } else if (downloadLinks["text/html"]) {
+          fileUrl = downloadLinks["text/html"];
+          fileType = "text/html"; // Fallback to HTML if no better option
         }
 
         const formattedBook = {
           id: apiBook.id,
-          title: apiBook.title || 'Untitled',
-          author: apiBook.authors?.map(a => a.name).join(', ') || 'Unknown Author',
-          imageUrl: apiBook.cover_url || apiBook.download_links?.['image/jpeg'] || 'https://via.placeholder.com/150',
-          language: apiBook.languages?.join(', ') || 'N/A',
+          title: apiBook.title || "Untitled",
+          author:
+            apiBook.authors?.map((a) => a.name).join(", ") || "Unknown Author",
+          imageUrl:
+            apiBook.cover_url ||
+            apiBook.download_links?.["image/jpeg"] ||
+            "https://via.placeholder.com/150",
+          language: apiBook.languages?.join(", ") || "N/A",
           birthDeathYears: apiBook.authors?.[0]?.birth_year
-            ? `${apiBook.authors[0].birth_year} - ${apiBook.authors[0].death_year || 'N/A'}`
-            : 'Unknown',
-          translators: apiBook.translators?.join(', ') || 'N/A',
-          description: apiBook.summaries?.[0] || apiBook.summary || apiBook.description || 'No description available.',
+            ? `${apiBook.authors[0].birth_year} - ${
+                apiBook.authors[0].death_year || "N/A"
+              }`
+            : "Unknown",
+          translators: apiBook.translators?.join(", ") || "N/A",
+          description:
+            apiBook.summaries?.[0] ||
+            apiBook.summary ||
+            apiBook.description ||
+            "No description available.",
           categories: apiBook.bookshelves || apiBook.subjects || [],
           fileUrl: fileUrl,
           fileType: fileType,
         };
         setBook(formattedBook);
       } else {
-        setError('Book not found.');
+        setError("Book not found.");
       }
     } catch (err) {
       let errorMsg = "Failed to fetch book details.";
@@ -84,12 +98,14 @@ const BookDetail = () => {
     if (!book) return;
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/api/document/explore-gutendex?page=1&page_size=4&languages=${book.language}&t=${Date.now()}`,
+        `${API_BASE_URL}/api/document/explore-gutendex?page=1&page_size=4&languages=${
+          book.language
+        }&t=${Date.now()}`,
         {
           headers: {
             Authorization: `Bearer ${USER_TOKEN}`,
-            Accept: 'application/json',
-            'Cache-Control': 'no-cache',
+            Accept: "application/json",
+            "Cache-Control": "no-cache",
           },
         }
       );
@@ -97,13 +113,20 @@ const BookDetail = () => {
       const books = response?.data?.data?.results || [];
       setRelatedBooks(
         books
-          .filter(result => (result.book_id || result.id) !== parseInt(bookId))
-          .map(apiBook => ({
+          .filter(
+            (result) => (result.book_id || result.id) !== parseInt(bookId)
+          )
+          .map((apiBook) => ({
             id: apiBook.book_id || apiBook.id,
-            title: apiBook.title || 'Untitled',
-            author: apiBook.authors?.map(a => a.name).join(', ') || 'Unknown Author',
-            imageUrl: apiBook.cover_url || apiBook.download_links?.['image/jpeg'] || 'https://via.placeholder.com/150',
-            language: apiBook.languages?.join(', ') || 'N/A',
+            title: apiBook.title || "Untitled",
+            author:
+              apiBook.authors?.map((a) => a.name).join(", ") ||
+              "Unknown Author",
+            imageUrl:
+              apiBook.cover_url ||
+              apiBook.download_links?.["image/jpeg"] ||
+              "https://via.placeholder.com/150",
+            language: apiBook.languages?.join(", ") || "N/A",
             categories: apiBook.bookshelves || apiBook.subjects || [],
           }))
       );
@@ -122,26 +145,41 @@ const BookDetail = () => {
 
   const handleReadClick = async () => {
     if (!book?.fileUrl || !book?.fileType) {
-      alert("No readable file available. Please check if the book supports a readable format (e.g., PDF, HTML).");
+      alert(
+        "No readable file available. Please check if the book supports a readable format (e.g., PDF, HTML)."
+      );
       return;
     }
 
-    console.log("Navigating to reader with:", { bookId, fileUrl: book.fileUrl, fileType: book.fileType }); // Debug
-    navigate(`/reader/${bookId}`, { state: { url: book.fileUrl, type: book.fileType } });
+    console.log("Navigating to reader with:", {
+      bookId,
+      fileUrl: book.fileUrl,
+      fileType: book.fileType,
+    }); // Debug
+    navigate(`/reader/${bookId}`, {
+      state: { url: book.fileUrl, type: book.fileType },
+    });
   };
 
-  const scrollPrev = () => gridRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
-  const scrollNext = () => gridRef.current?.scrollBy({ left: 300, behavior: 'smooth' });
+  const scrollPrev = () =>
+    gridRef.current?.scrollBy({ left: -300, behavior: "smooth" });
+  const scrollNext = () =>
+    gridRef.current?.scrollBy({ left: 300, behavior: "smooth" });
 
-  if (loading) return <p className="loading-message">Loading book details...</p>;
+  if (loading)
+    return <p className="loading-message">Loading book details...</p>;
   if (error) return <p className="error-message">{error}</p>;
   if (!book) return <p>Book not found.</p>;
 
   return (
     <div className="book-detail-container">
       <nav className="breadcrumbs">
-        <Link to="/" className="breadcrumbs-link">Home {'>'}</Link>
-        <Link to="/books" className="breadcrumbs-link">Books {'>'}</Link>
+        <Link to="/" className="breadcrumbs-link">
+          Home {">"}
+        </Link>
+        <Link to="/books" className="breadcrumbs-link">
+          Books {">"}
+        </Link>
         <span>{book.title}</span>
       </nav>
 
@@ -151,17 +189,29 @@ const BookDetail = () => {
         </div>
         <div className="book-detail-info">
           <h1>{book.title}</h1>
-          <p><strong>Author:</strong> {book.author}</p>
-          <p><strong>Birth / Death Years:</strong> {book.birthDeathYears}</p>
-          <p><strong>Language:</strong> {book.language}</p>
-          <p><strong>Translators:</strong> {book.translators}</p>
+          <p>
+            <strong>Author:</strong> {book.author}
+          </p>
+          <p>
+            <strong>Birth / Death Years:</strong> {book.birthDeathYears}
+          </p>
+          <p>
+            <strong>Language:</strong> {book.language}
+          </p>
+          <p>
+            <strong>Translators:</strong> {book.translators}
+          </p>
           <p className="book-description">{book.description}</p>
           <div className="book-detail-tags">
-            {book.categories.map(cat => (
-              <span key={cat} className="book-detail-tag">{cat}</span>
+            {book.categories.map((cat) => (
+              <span key={cat} className="book-detail-tag">
+                {cat}
+              </span>
             ))}
           </div>
-          <button className="read-button" onClick={handleReadClick}>Read</button>
+          <button className="read-button" onClick={handleReadClick}>
+            Read
+          </button>
         </div>
       </div>
 
@@ -171,10 +221,14 @@ const BookDetail = () => {
           <button className="slider-arrow prev" onClick={scrollPrev}>
             <img src={rightArrow} alt="Previous" />
           </button>
-          <div className="related-books-grid" ref={gridRef} >
+          <div className="related-books-grid" ref={gridRef}>
             {relatedBooks.length > 0 ? (
-              relatedBooks.map(book => (
-                <Link key={book.id} to={`/book/${book.id}`} style={{ textDecoration: 'none',width: "300px" }}>
+              relatedBooks.map((book) => (
+                <Link
+                  key={book.id}
+                  to={`/books/${book.id}`}
+                  style={{ textDecoration: "none", width: "300px" }}
+                >
                   <BookCard book={book} />
                 </Link>
               ))
