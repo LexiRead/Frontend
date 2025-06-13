@@ -43,7 +43,7 @@ const BookList = () => {
           : { Accept: "application/json" },
       });
 
-      if (response.data && response.data.data) {
+      if (response.data?.data) {
         const apiData = response.data.data;
         const formattedBooks = (apiData.results || []).map((apiBook) => ({
           id: apiBook.book_id || apiBook.id,
@@ -130,9 +130,6 @@ const BookList = () => {
         <div className="book-grid">
           {books.length > 0 ? (
             books.map((book) => (
-              // <Link key={book.id} to={`/book/${book.id}`} style={{ textDecoration: 'none' }}>
-              //   <BookCard book={book} />
-              // </Link>
               <Link
                 key={book.id}
                 to={`/book/${book.id}`}
