@@ -210,10 +210,10 @@ const UserBookDetail = () => {
               relatedBooks.map((book) => (
                 <Link
                   key={book.id}
-                  to={`/book/${book.id}`}
+                  // to={`/book/${book.id}`}
                   style={{ textDecoration: "none", width: "300px" }}
                 >
-                  <BookCard book={book} />
+                  <BookCard book={book} route="user" />
                 </Link>
               ))
             ) : (
