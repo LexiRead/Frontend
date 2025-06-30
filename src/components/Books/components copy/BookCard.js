@@ -11,7 +11,8 @@ const BookCard = ({ book, route }) => {
   const imageUrl = book.imageUrl || "../picture/vo cover.png";
   // صورة افتراضية أفضل قليلاً
   const defaultImageOnError =
-    "https://via.placeholder.com/200x300.png?text=Load+Error"; // صورة إذا فشل تحميل imageUrl
+    "https://via.placeholder.com/200x300.png?text=Load+Error";
+     // صورة إذا فشل تحميل imageUrl
 
   return (
     // المسار لصفحة تفاصيل الكتاب، تأكد أنه متوافق مع تعريفك في App.js

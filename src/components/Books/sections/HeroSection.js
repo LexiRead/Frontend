@@ -66,7 +66,7 @@ function HeroSection() {
     }
 
     const formData = new FormData();
-    formData.append('document', selectedFile);
+    formData.append('pdf', selectedFile);
     formData.append('author_name', author); 
     formData.append('description', description); 
 
@@ -76,7 +76,8 @@ function HeroSection() {
 
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/api/document/store`,
+        // `${API_BASE_URL}/api/document/store`,
+        `${API_BASE_URL}/api/document/convert-to-html`,
         formData,
         {
           headers: {
@@ -94,7 +95,7 @@ function HeroSection() {
       if (fileInputRef.current) {
         fileInputRef.current.value = ""; 
       }
-      alert("تم رفع الملف بنجاح!"); 
+      alert("“File uploaded successfully! Check My Books ⬇️"); 
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.message || "حدث خطأ أثناء رفع الملف.";
       let detailedErrors = "";
@@ -186,7 +187,7 @@ function HeroSection() {
             {/* نتيجة الرفع */}
             {uploadResult && (
                 <div className="upload-success" style={{ color: "green", marginTop: '15px', padding: '10px', border: '1px solid green', borderRadius: '4px', background: '#e6ffed' }}>
-                  ✅ File uploaded successfully!
+                  ✅ File uploaded successfully! look "my books"
                   {/* يمكنك عرض بعض البيانات من response.data إذا أردت */}
                   {/* <pre>{JSON.stringify(uploadResult, null, 2)}</pre> */}
                 </div>
@@ -198,7 +199,7 @@ function HeroSection() {
             )}
 
              <p className="supported-formats" style={{marginTop: '20px', fontSize: '0.9em', color: '#777'}}>
-               Supported formats: .pdf, .doc, .docx, .txt
+               {/* Supported formats: .pdf, .doc, .docx, .txt */}
              </p>
         </div>
     </section>

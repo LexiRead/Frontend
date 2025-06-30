@@ -97,18 +97,31 @@ const BookDetail = () => {
   const fetchRelatedBooks = useCallback(async () => {
     if (!book) return;
     try {
+      // const response = await axios.get(
+      //   `${API_BASE_URL}/api/document/explore-gutendex?page=1&page_size=4&languages=${
+      //     book.language
+      //   }&t=${Date.now()}`,
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${USER_TOKEN}`,
+      //       Accept: "application/json",
+      //       "Cache-Control": "no-cache",
+      //     },
+      //   }
+      // );
+      const category = book.categories.find(cat => !cat.startsWith("Browsing:")) || "";
       const response = await axios.get(
-        `${API_BASE_URL}/api/document/explore-gutendex?page=1&page_size=4&languages=${
-          book.language
-        }&t=${Date.now()}`,
-        {
-          headers: {
-            Authorization: `Bearer ${USER_TOKEN}`,
-            Accept: "application/json",
-            "Cache-Control": "no-cache",
-          },
-        }
-      );
+  `${API_BASE_URL}/api/document/explore-gutendex?page=1&page_size=4&topic=${encodeURIComponent(category)}&t=${Date.now()}`,
+  {
+    headers: {
+      Authorization: `Bearer ${USER_TOKEN}`,
+      Accept: "application/json",
+      "Cache-Control": "no-cache",
+    },
+  }
+);
+
+
       console.log("Related Books API Response:", response.data); // Debug
       const books = response?.data?.data?.results || [];
       setRelatedBooks(
@@ -156,6 +169,7 @@ const BookDetail = () => {
       fileUrl: book.fileUrl,
       fileType: book.fileType,
     }); // Debug
+    // navigate(`/reader/${bookId}`, {
     navigate(`/reader/${bookId}`, {
       state: { url: book.fileUrl, type: book.fileType },
     });
@@ -229,7 +243,7 @@ const BookDetail = () => {
                   to={`/books/${book.id}`}
                   style={{ textDecoration: "none", width: "300px" }}
                 >
-                  <BookCard book={book} />
+                  <BookCard book={book}route="book" />
                 </Link>
               ))
             ) : (

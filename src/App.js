@@ -8,6 +8,7 @@ import BookListPage from "../src/components/Books/components copy/BookList";
 import BookDetailPage from "./components/Books/pages/BookDetailPage";
 import UserBookDetail from "./components/Books/components copy/UserBookDetail";
 import BookReader from "./components/Books/pages/BookReader";
+import UserReader from "./components/Books/pages/userReader"
 
 import Community from "./components/Community/index";
 import Lexibot from "./components/Lexibot/index";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/book/:bookId" element={<BookDetailPage />} />
           <Route path="/user/:bookId" element={<UserBookDetail />} />
           <Route path="/reader/:bookId" element={<BookReader />} />
+          <Route path="/userReader/:bookId" element={<UserReader />} />
 
           <Route path="/translate" element={<Translate />} />
           <Route path="/wordlist" element={<Wordlist />} />

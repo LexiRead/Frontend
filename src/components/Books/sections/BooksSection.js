@@ -134,7 +134,7 @@ function UserDocumentsSection() {
       >
         <h1>My Books</h1>
         <button onClick={handleShowMoreClick} className="show-more-button">
-          Show More<span className="arrow">➔</span>
+          Lexi Books<span className="arrow">➔</span>
         </button>
       </div>
 

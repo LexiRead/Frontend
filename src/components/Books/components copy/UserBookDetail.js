@@ -140,10 +140,12 @@ const UserBookDetail = () => {
       fileUrl: book.fileUrl,
       fileType: book.fileType,
     }); // Debug
-    navigate(`/reader/${bookId}`, {
+    console.log("Going to:", `/userReader/${bookId}`);
+    navigate(`/userReader/${bookId}`, {
       state: { url: book.fileUrl, type: book.fileType },
     });
   };
+  // console.log(bookId)
 
   const scrollPrev = () =>
     gridRef.current?.scrollBy({ left: -300, behavior: "smooth" });
@@ -214,6 +216,7 @@ const UserBookDetail = () => {
                   style={{ textDecoration: "none", width: "300px" }}
                 >
                   <BookCard book={book} route="user" />
+                  {/* <BookCard book={book} route="userReader" /> */}
                 </Link>
               ))
             ) : (
