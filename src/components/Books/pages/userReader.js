@@ -448,22 +448,22 @@ const handleTextSelection = async () => {
   //   setTooltip((prev) => ({ ...prev, visible: false }));
   // };
 
-  const handleAddMyProfile = async () => {
-    try {
-      await axios.post(
-        `${API_BASE_URL}/api/document/import-gutendexbook`,
-        {
-          book_id: bookId,
-          title: bookData?.title || initialBookTitle,
-          format: "text/html",
-        },
-        { headers: { Authorization: `Bearer ${USER_TOKEN}` } }
-      );
-      alert("Book added to your profile successfully!");
-    } catch (err) {
-      alert("Failed to add book to profile: " + (err.response?.data?.message || err.message));
-    }
-  };
+  // const handleAddMyProfile = async () => {
+  //   try {
+  //     await axios.post(
+  //       `${API_BASE_URL}/api/document/import-gutendexbook`,
+  //       {
+  //         book_id: bookId,
+  //         title: bookData?.title || initialBookTitle,
+  //         format: "text/html",
+  //       },
+  //       { headers: { Authorization: `Bearer ${USER_TOKEN}` } }
+  //     );
+  //     alert("Book added to your profile successfully!");
+  //   } catch (err) {
+  //     alert("Failed to add book to profile: " + (err.response?.data?.message || err.message));
+  //   }
+  // };
 
     const handleTTS = async () => {
   const formData = new FormData();

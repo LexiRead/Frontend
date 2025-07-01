@@ -5,14 +5,7 @@ body {
     /* background-color: #f8f9fa;  */
     /* لون خلفية فاتح */
   }
-  
-  .App {
-    /* max-width: 1200px;  */
-    /* تحديد عرض أقصى للمحتوى */
-    /* margin: 0 auto;  */
-      /* توسيط المحتوى */
-    /* padding: 20px; */
-  }
+
 
   
   /* --- شريط البحث والفلاتر --- */
@@ -395,10 +388,7 @@ body {
       
        /* عرض ثابت لكل بطاقة في السلايدر */
   }
-  .related-books-grid .book-card-cover {
-      /* height: 200px;  */
-      /* ارتفاع أقل للغلاف */
-  }
+
   .related-books-grid .book-card-title {
       font-size: 0.85rem;
       min-height: 2.5rem; /* تعديل الارتفاع الأدنى */
@@ -516,8 +506,11 @@ body {
   .reader-main-content {
     display: flex;
     flex-direction: column; /* الأهم: جعل العناصر تحت بعضها */
-    padding: 30px 5%;
+    padding: 20px;
     gap: 30px;
+    width: 100%;
+    /* margin: 0px; */
+
   }
 
   /* القسم العلوي الجديد: يحتوي على الغلاف والمعلومات */
