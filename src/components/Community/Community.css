@@ -1,0 +1,229 @@
+/* --- Global Wrapper --- */
+.community-wrapper {
+    max-width: 700px;
+    margin: 40px auto;
+    direction: ltr; /* Set direction to LTR for the main layout, RTL will be handled by flexbox */
+}
+
+/* --- Tabs --- */
+.tabs-container {
+    border-bottom: 1px solid #E0E0E0;
+    margin-bottom: 24px;
+}
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+}
+.tab-button {
+    background: none;
+    border: none;
+    padding: 16px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #828282;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.tab-button.active {
+    color: #2F80ED;
+    border-bottom-color: #2F80ED;
+}
+
+/* --- Content Area --- */
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Post Input --- */
+.post-input-container {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.post-input-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.post-input-field {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+}
+.post-input-field::placeholder {
+    color: #BDBDBD;
+}
+.post-input-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    /* color: rgba(20, 19, 21, 0.71); */
+    /* color: red; */
+}
+.post-input-button svg {
+    stroke: #828282;
+}
+.fa-regular{
+    /* color: rgb(52, 91, 246); */
+        font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* --- Feed --- */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Post Component --- */
+.post {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 20px;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+.post-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+.post-user-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.post-username {
+    font-weight: 600;
+    color: #333333;
+    font-size: 16px;
+}
+.post-shared-text {
+    font-weight: 400;
+    color: #343232b0;
+    margin-inline-start: 4px; /* Works for both LTR and RTL */
+}
+.post-timestamp {
+    font-size: 14px;
+    font-weight: 400;
+    /* color: #BDBDBD; */
+    color: #343232b0;
+
+}
+
+/* --- Post Options Dropdown --- */
+.post-options-container {
+    position: relative; /* This is the anchor for the dropdown */
+}
+.post-options-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+.options-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0; /* Align to the right of the button */
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid #F2F2F2;
+    z-index: 10;
+    width: 120px;
+    overflow: hidden; /* To apply border-radius to children */
+    padding: 4px;
+}
+.options-item {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+.options-item:hover {
+    background-color: #F2F2F2;
+}
+.options-item.options-delete {
+    color: #EB5757;
+}
+.options-item.options-edit {
+    color: #4F4F4F;
+}
+
+
+/* --- Post Content & Actions --- */
+.post-content {
+    margin-bottom: 16px;
+    direction: rtl; /* Forcing RTL for Arabic/mixed content text */
+    text-align: right;
+}
+.post-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #4F4F4F;
+    margin: 0;
+}
+.post-media-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 16px;
+    object-fit: cover;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #F2F2F2;
+}
+.action-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #828282;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.action-item svg path {
+    transition: stroke 0.2s ease;
+}
+.action-item:hover svg path{
+    stroke: #2F80ED; /* Change icon color on hover */
+}
+.load-more-button{
+    color: #2F80ED;
+    margin: 20px;
+}
