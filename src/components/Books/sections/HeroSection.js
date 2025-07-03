@@ -143,7 +143,7 @@ function HeroSection() {
             {selectedFile && !uploading && (
               <div style={{ marginTop: '20px', borderTop: '1px solid #eee', paddingTop: '20px',width: "100%" }}>
                 <div style={{ marginBottom: '15px' }}>
-                  <label htmlFor="author" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold',color: "gray" }}>Author Name:</label>
+                  <label htmlFor="author" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold',color: "gray" }}>Author Name </label>
                   <input className='outher_input'
                     type="text"
                     id="author"
@@ -156,7 +156,7 @@ function HeroSection() {
                 </div>
 
                 <div style={{ marginBottom: '20px' }}>
-                  <label htmlFor="description" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold',color: "gray" }}>Description:</label>
+                  <label htmlFor="description" style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold',color: "gray" }}>Description </label>
                   <textarea
                     id="description"
                     value={description}
@@ -165,7 +165,14 @@ function HeroSection() {
                     disabled={uploading}
                     rows="3"
                     // style={{ padding: '10px', width: '80%', maxWidth: '400px', border: '1px solid #ccc', borderRadius: '4px', resize: 'vertical' }}
-                    style={{position: "relative",right: "60px" ,color: "white", padding: '10px', width: '140%', maxWidth: '4000px', border: '1px solid #eee', borderRadius: '50px', backgroundColor: "#E1AB48"}}
+                    style={{
+                      // position: "relative",right: "40px",
+                            color: "white", padding: '10px', width: '100%',
+                            maxWidth: '4000px',maxHeight: "105px",
+                            border: '1px solid #eee',
+                            borderRadius: '50px', 
+                            backgroundColor: "#E1AB48"
+                        }}
                   />
                 </div>
                 

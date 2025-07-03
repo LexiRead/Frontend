@@ -116,7 +116,7 @@ const BookList = () => {
           <option value="fiction">Fiction</option>
           <option value="Novel">Novel</option>
           <option value="Science">Science</option>
-          <option value="ShortStory">Short Story</option>
+          {/* <option value="ShortStory">Short Story</option> */}
           <option value="Children">Children</option>
           <option value="Poetry">Poetry</option>
           {/* زود أنواعك هنا حسب الداتا عندك */}
