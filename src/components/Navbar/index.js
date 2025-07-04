@@ -32,7 +32,6 @@ const Navbar = () => {
         <li><Link to="/wordlist">Word List</Link></li>
         <li><Link to="/community">Community</Link></li>
         <li><Link to="/lexibot">Lexi Bot</Link></li>
-        <li><Link to="/login">Login</Link></li>
         <li><Link to="/memorized">Memorized</Link></li>
         <li><Link to="/mcq">MCQ</Link></li>
       </ul>
@@ -41,7 +40,10 @@ const Navbar = () => {
           <img src={avatarUrl || Account} alt="Profile" style={{ width: "30px", height: "30px", borderRadius: "50%" }} />
           <span>{userName}</span>
         </Link>
+        
         <i className="fas fa-chevron-down"></i>
+        <li><Link to="/login" style={{color: "#29436D"}}>Login</Link></li>
+
       </div>
     </nav>
   );
