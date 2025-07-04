@@ -60,6 +60,7 @@ const PostInput = ({ onPostAdded }) => {
 
       const result = await response.json();
       console.log('✅ تم النشر:', result);
+      alert("تم رفع المنشور بنجاح")
 
       setContent('');
       setImage(null);
@@ -156,12 +157,40 @@ const Community = () => {
     ));
   };
 
-  const handleDelete = () => {
-    if (!postToDelete) return;
-    console.log(`API: Delete post ${postToDelete.id}`);
+  // const handleDelete = () => {
+  //   if (!postToDelete) return;
+  //   console.log(`API: Delete post ${postToDelete.id}`);
+  //   setPosts(posts.filter(p => p.id !== postToDelete.id));
+  //   setPostToDelete(null);
+  // };
+  const handleDelete = async () => {
+  if (!postToDelete) return;
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/api/community/posts/${postToDelete.id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${USER_TOKEN}`,
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('فشل حذف المنشور');
+    }
+
+    console.log('✅ تم حذف المنشور من الـ API');
+
+    // احذف البوست من الـ state بعد نجاح الحذف
     setPosts(posts.filter(p => p.id !== postToDelete.id));
     setPostToDelete(null);
-  };
+
+  } catch (error) {
+    console.error('❌ خطأ أثناء الحذف:', error);
+    alert('حدث خطأ أثناء حذف المنشور.');
+  }
+};
+
 
   const handleShowComments = (post) => {
     console.log(`API: Fetch comments for post ${post.id}`);
@@ -201,6 +230,7 @@ const Community = () => {
               onLike={handleLike}
               onOpenDeleteModal={setPostToDelete}
               onShowComments={handleShowComments}
+              isMyPostsPage={activeTab === 'my-posts'}
             />
             {currentPage < lastPage && (
               <button onClick={handleLoadMore} className="load-more-button">

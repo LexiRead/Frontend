@@ -27,6 +27,7 @@ const Navbar = () => {
       </div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
+        <li><Link to="/LexiBook">Lexi Books</Link></li>
         <li><Link to="/translate">Translate</Link></li>
         <li><Link to="/wordlist">Word List</Link></li>
         <li><Link to="/community">Community</Link></li>

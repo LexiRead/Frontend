@@ -27,7 +27,7 @@ const PostInput = () => {
 };
 
 // ... باقي الكود لمكون Feed يبقى كما هو
-const Feed = ({ posts, onLike, onOpenDeleteModal, onShowComments }) => {
+const Feed = ({ posts, onLike, onOpenDeleteModal, onShowComments , isMyPostsPage }) => {
     return (
       <>
         <PostInput />
@@ -39,6 +39,7 @@ const Feed = ({ posts, onLike, onOpenDeleteModal, onShowComments }) => {
               onLike={onLike}
               onOpenDeleteModal={onOpenDeleteModal}
               onShowComments={onShowComments}
+              isMyPostsPage={isMyPostsPage}
             />
           ))}
         </div>

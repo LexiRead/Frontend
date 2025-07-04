@@ -1,7 +1,7 @@
 /* --- Global Wrapper --- */
 .community-wrapper {
-    max-width: 700px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 8px auto;
     direction: ltr; /* Set direction to LTR for the main layout, RTL will be handled by flexbox */
 }
 
@@ -13,7 +13,7 @@
 .tabs {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 100px;
 }
 .tab-button {
     background: none;
@@ -226,4 +226,61 @@
 .load-more-button{
     color: #2F80ED;
     margin: 20px;
+}
+/*edit style */
+/* --- Post Editing --- */
+.post-editing {
+    background-color: #FFFFFF; /* نفس لون خلفية البوست */
+    border: 1px solid #E0E0E0; /* نفس حدود البوست */
+    border-radius: 12px; /* نفس الزوايا */
+    padding: 20px; /* نفس التباعد الداخلي */
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+    /* مسافة بين العناصر داخل التعديل */
+}
+
+.post-editing textarea {
+    width: 100%;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #4F4F4F;
+    resize: vertical;
+}
+
+.post-editing input[type="file"] {
+    margin-top: 5px;
+    /* height: 50px; */
+    /* background-color: red; */
+    width: 50%;
+}
+
+.post-editing button {
+    display: flex;
+    justify-content: center;
+    /* width: 60%; */
+    /* align-self: flex-start; */
+    padding: 8px 16px;
+    /* margin: 50px; */
+    /* padding: 10px; */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.post-editing button:first-of-type {
+    background-color: #2F80ED;
+    color: #FFFFFF;
+}
+
+.post-editing button:last-of-type {
+    background-color: #F2F2F2;
+    color: #4F4F4F;
+    /* margin-left: 8px; */
 }
