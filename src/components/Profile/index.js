@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import "./global.css";
@@ -10,18 +10,26 @@ import Arrow from "../../assets/icons/arrow-right.png";
 import Ele from "../../assets/icons/elements.png";
 import Set from "../../assets/icons/setting-2.png";
 import Log from "../../assets/icons/logout.png";
+import { useAuth } from "../../context/AuthContext";
 
 const Profile = () => {
+  const { signout, setUser, user } = useAuth();
   const [oldPassword, setOldPassword] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [showInputs, setShowInputs] = useState(false);
-  const [name, setName] = useState(localStorage.getItem("userName") || "Abdo Zaki");
-  const [email, setEmail] = useState(localStorage.getItem("userEmail") || "Zeko@example.com");
+  const [name, setName] = useState(
+    user.name || localStorage.getItem("userName") || "Abdo Zaki"
+  );
+  const [email, setEmail] = useState(
+    user.email || localStorage.getItem("userEmail") || "Zeko@example.com"
+  );
   const [avatar, setAvatar] = useState(null);
-  const [avatarUrl, setAvatarUrl] = useState(localStorage.getItem("avatarUrl") || "");
+  const [avatarUrl, setAvatarUrl] = useState(
+    localStorage.getItem("avatarUrl") || ""
+  );
   const [showNameInput, setShowNameInput] = useState(false);
   const [showEmailInput, setShowEmailInput] = useState(false);
   const [showAvatarInput, setShowAvatarInput] = useState(false);
@@ -50,19 +58,22 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem("authToken");
-      const response = await fetch("http://app.elfar5a.com/api/profile/update-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          old_password: oldPassword,
-          password: password,
-          password_confirmation: passwordConfirmation,
-        }),
-      });
+      const response = await fetch(
+        "http://app.elfar5a.com/api/profile/update-password",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            old_password: oldPassword,
+            password: password,
+            password_confirmation: passwordConfirmation,
+          }),
+        }
+      );
 
       const data = await response.json();
       console.log("API Response:", data);
@@ -85,7 +96,11 @@ const Profile = () => {
   };
 
   const handleDeleteAccount = async () => {
-    if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete your account? This action cannot be undone."
+      )
+    ) {
       return;
     }
 
@@ -94,25 +109,27 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem("authToken");
-      const response = await fetch("http://app.elfar5a.com/api/auth/deleteAccount", {
-        method: "DELETE",
-        headers: {
-          "Accept": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        "http://app.elfar5a.com/api/auth/deleteAccount",
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       const data = await response.json();
       console.log("Delete Account Response:", data);
 
       if (response.ok && data.data === "Account deleted successfully") {
         setMessage("Account deleted successfully. Redirecting to login...");
-        localStorage.removeItem("authToken");
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
+        signout();
       } else {
-        setMessage(data.message || "Failed to delete account. Please try again.");
+        setMessage(
+          data.message || "Failed to delete account. Please try again."
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -123,8 +140,7 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
-    navigate("/login");
+    signout();
   };
 
   const handleUpdateProfile = async () => {
@@ -138,23 +154,30 @@ const Profile = () => {
 
     try {
       const token = localStorage.getItem("authToken");
-      const response = await fetch("http://app.elfar5a.com/api/profile/update-profile", {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      const response = await fetch(
+        "http://app.elfar5a.com/api/profile/update-profile",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        }
+      );
 
       const data = await response.json();
       console.log("Update Profile Response:", data);
 
       if (response.ok) {
         setMessage("Profile updated successfully!");
-        localStorage.setItem("userName", data.data.name); // تحديث الـ localStorage
+        setUser({
+          name: data.data.name,
+          email: data.data.email,
+        });
+        localStorage.setItem("userName", data.data.name);
         localStorage.setItem("userEmail", data.data.email);
-        localStorage.setItem("avatarUrl", data.data.avatar || ""); // تحديث الـ avatarUrl
+        localStorage.setItem("avatarUrl", data.data.avatar || "");
         setName(data.data.name);
         setEmail(data.data.email);
         setAvatarUrl(data.data.avatar || "");
@@ -272,7 +295,9 @@ const Profile = () => {
                       <div className="frame-9">
                         <img className="img-2" src={Tex} />
                         <div className="frame-23">
-                          <div className="text-wrapper-11">Translation Engine</div>
+                          <div className="text-wrapper-11">
+                            Translation Engine
+                          </div>
                         </div>
                       </div>
                       <div className="frame-24">
@@ -287,7 +312,9 @@ const Profile = () => {
                     <div className="frame-9">
                       <img className="img-2" src={Tex} />
                       <div className="frame-23">
-                        <div className="text-wrapper-11">Translation Language</div>
+                        <div className="text-wrapper-11">
+                          Translation Language
+                        </div>
                       </div>
                     </div>
                     <div className="frame-24">
@@ -323,21 +350,35 @@ const Profile = () => {
                           value={oldPassword}
                           onChange={(e) => setOldPassword(e.target.value)}
                           placeholder="Old Password"
-                          style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            margin: "10px 0",
+                          }}
                         />
                         <input
                           type="password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           placeholder="New Password"
-                          style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            margin: "10px 0",
+                          }}
                         />
                         <input
                           type="password"
                           value={passwordConfirmation}
-                          onChange={(e) => setPasswordConfirmation(e.target.value)}
+                          onChange={(e) =>
+                            setPasswordConfirmation(e.target.value)
+                          }
                           placeholder="Confirm Password"
-                          style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+                          style={{
+                            width: "100%",
+                            padding: "10px",
+                            margin: "10px 0",
+                          }}
                         />
                       </>
                     )}
@@ -346,7 +387,18 @@ const Profile = () => {
                         {loading ? "Loading..." : "Change Password"}
                       </div>
                     </div>
-                    {message && <p style={{ color: message.includes("successfully") ? "green" : "red", marginLeft: "20px" }}>{message}</p>}
+                    {message && (
+                      <p
+                        style={{
+                          color: message.includes("successfully")
+                            ? "green"
+                            : "red",
+                          marginLeft: "20px",
+                        }}
+                      >
+                        {message}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

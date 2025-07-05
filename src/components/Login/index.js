@@ -4,8 +4,10 @@ import "./index.css";
 import Logo from "../../assets/images/logo.png";
 import login from "../../assets/images/login.png";
 import Eye from "../../assets/icons/eye.svg";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
+  const { setToken, setUser } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -60,9 +62,15 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Save token and user data
-        localStorage.setItem("authToken", data.data.token);
-        localStorage.setItem("userName", data.data.name); // حفظ الـ name كـ userName
+        // Save token and user data using AuthContext
+        setToken(data.data.token);
+        setUser({
+          name: data.data.name,
+          email: data.data.email,
+        });
+
+        // Save additional data to localStorage
+        localStorage.setItem("userName", data.data.name);
         localStorage.setItem("userEmail", data.data.email);
 
         // Handle "Remember Me"
