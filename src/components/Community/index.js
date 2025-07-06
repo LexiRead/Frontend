@@ -20,9 +20,94 @@ const SendIcon = () => (
 );
 
 // ✅ إدخال المنشور
+// const PostInput = ({ onPostAdded }) => {
+//   const [content, setContent] = useState('');
+//   const [image, setImage] = useState(null);
+//   const fileInputRef = useRef(null);
+
+//   const handleImageClick = () => {
+//     fileInputRef.current.click();
+//   };
+
+//   const handleImageChange = (e) => {
+//     if (e.target.files.length > 0) {
+//       setImage(e.target.files[0]);
+//     }
+//   };
+
+//   const handlePost = async () => {
+//     if (!content && !image) {
+//       alert('يرجى كتابة محتوى أو رفع صورة أولاً.');
+//       return;
+//     }
+
+//     const formData = new FormData();
+//     formData.append('content', content);
+//     if (image) {
+//       formData.append('image', image);
+//     }
+
+//     try {
+//       const response = await fetch(`${API_BASE_URL}/api/community/posts`, {
+//         method: 'POST',
+//         headers: {
+//           Authorization: `Bearer ${USER_TOKEN}`,
+//         },
+//         body: formData
+//       });
+
+//       if (!response.ok) throw new Error('فشل إضافة المنشور');
+
+//       const result = await response.json();
+//       console.log('✅ تم النشر:', result);
+//       alert("تم رفع المنشور بنجاح")
+
+//       setContent('');
+//       setImage(null);
+
+//       if (onPostAdded) onPostAdded(); // إعادة تحميل المنشورات
+//     } catch (error) {
+//       console.error('Error creating post:', error);
+//       alert('حدث خطأ أثناء رفع المنشور.');
+//     }
+//   };
+
+//   return (
+//     <div className="post-input-container">
+//       <textarea
+//         type="text"
+//         className="post-input-field"
+//         placeholder="What’s on your mind?"
+//         value={content}
+//         onChange={(e) => setContent(e.target.value)}
+//       />
+
+//       <input
+//         type="file"
+//         accept="image/*"
+//         ref={fileInputRef}
+//         style={{ display: 'none' }}
+//         onChange={handleImageChange}
+//       />
+
+//       <button type="button" className="upimg-input-button" title=" Upload Image" onClick={handleImageClick}>
+//         <i className="fa-regular fa-image"></i>
+//       </button>
+
+//       <button className="post-input-button" title="Post" onClick={handlePost}>
+//         {/* Post */}
+//          <SendIcon />
+//       </button>
+//     </div>
+//   );
+// };
+
+
 const PostInput = ({ onPostAdded }) => {
   const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   const fileInputRef = useRef(null);
 
   const handleImageClick = () => {
@@ -31,7 +116,10 @@ const PostInput = ({ onPostAdded }) => {
 
   const handleImageChange = (e) => {
     if (e.target.files.length > 0) {
-      setImage(e.target.files[0]);
+      const file = e.target.files[0];
+      setImage(file);
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl);
     }
   };
 
@@ -60,10 +148,11 @@ const PostInput = ({ onPostAdded }) => {
 
       const result = await response.json();
       console.log('✅ تم النشر:', result);
-      alert("تم رفع المنشور بنجاح")
+      alert("تم رفع المنشور بنجاح");
 
       setContent('');
       setImage(null);
+      setImagePreview(null);
 
       if (onPostAdded) onPostAdded(); // إعادة تحميل المنشورات
     } catch (error) {
@@ -82,6 +171,17 @@ const PostInput = ({ onPostAdded }) => {
         onChange={(e) => setContent(e.target.value)}
       />
 
+      {/* ✅ الصورة تظهر هنا تحت الـ Textarea */}
+      {imagePreview && (
+        <div className="image-preview" style={{ marginTop: '10px' }}>
+          <img
+            src={imagePreview}
+            alt="Preview"
+            style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '8px' }}
+          />
+        </div>
+      )}
+
       <input
         type="file"
         accept="image/*"
@@ -95,8 +195,7 @@ const PostInput = ({ onPostAdded }) => {
       </button>
 
       <button className="post-input-button" title="Post" onClick={handlePost}>
-        {/* Post */}
-         <SendIcon />
+        <SendIcon />
       </button>
     </div>
   );

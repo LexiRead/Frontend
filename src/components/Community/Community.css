@@ -409,3 +409,11 @@
   padding: 4px 10px;
   font-size: 14px;
 } */
+.image-preview {
+  margin-top: 10px;
+}
+
+.image-preview img {
+  display: block;
+  border-radius: 8px;
+}
