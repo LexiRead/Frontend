@@ -665,3 +665,22 @@
   align-items: flex-start;
   gap: 24px;
 }
+
+
+
+
+
+
+
+
+
+
+.favorite-icon.fas.fa-heart {
+  color: #ff0000 !important;
+}
+.favorite-icon.far.fa-heart {
+  color: #888888 !important;
+}
+.favorite-icon {
+  font-size: 24px; /* حجم الأيقونة */
+}

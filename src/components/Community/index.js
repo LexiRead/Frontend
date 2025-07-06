@@ -192,10 +192,10 @@ const Community = () => {
 };
 
 
-  const handleShowComments = (post) => {
-    console.log(`API: Fetch comments for post ${post.id}`);
-    setViewingCommentsForPost(post);
-  };
+  // const handleShowComments = (post) => {
+  //   console.log(`API: Fetch comments for post ${post.id}`);
+  //   setViewingCommentsForPost(post);
+  // };
 
   return (
     <div className="community-wrapper">
@@ -229,7 +229,7 @@ const Community = () => {
               posts={posts}
               onLike={handleLike}
               onOpenDeleteModal={setPostToDelete}
-              onShowComments={handleShowComments}
+              // onShowComments={handleShowComments}
               isMyPostsPage={activeTab === 'my-posts'}
             />
             {currentPage < lastPage && (

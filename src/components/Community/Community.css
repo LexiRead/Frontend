@@ -284,3 +284,128 @@
     color: #4F4F4F;
     /* margin-left: 8px; */
 }
+
+
+/* --- Comments List Wrapper --- */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* --- Single Comment --- */
+.comment-item {
+  background-color: #FFFFFF; /* نفس لون البوست */
+  border: 1px solid #E0E0E0; /* نفس البوردر */
+  border-radius: 12px; /* نفس الزوايا */
+  padding: 16px; /* نفس التباعد الداخلي */
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* --- Avatar --- */
+.comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* --- Content --- */
+.comment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-user {
+  font-weight: 600;
+  color: #333333;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.comment-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4F4F4F;
+  margin-bottom: 6px;
+  text-align: right; /* نفس اتجاه النص للغات RTL */
+  direction: rtl;
+}
+
+.comment-time {
+  font-size: 12px;
+  color: #828282;
+  margin-bottom: 6px;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.comment-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: #2F80ED;
+  transition: color 0.2s ease;
+}
+
+.comment-actions button:hover {
+  color: #0056b3;
+}
+
+/* --- Add Comment Section --- */
+.add-comment {
+  background-color: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-textarea {
+  width: 100%;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #4F4F4F;
+  resize: vertical;
+}
+
+.add-comment-button {
+  background-color: #2F80ED;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  align-self: flex-end;
+  transition: background-color 0.2s ease;
+}
+
+.add-comment-button:hover {
+  background-color: #0056b3;
+}
+
+/* 
+.comment-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+.comment-actions button {
+  padding: 4px 10px;
+  font-size: 14px;
+} */

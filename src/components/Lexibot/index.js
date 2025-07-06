@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import "../Lexibot/global.css";
 import "../Lexibot/guide.css";
