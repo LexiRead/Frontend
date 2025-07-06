@@ -16,7 +16,7 @@ const Memorized = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // جلب قائمة الكلمات
+  // Fetch word list
   useEffect(() => {
     const fetchWordList = async () => {
       setLoading(true);
@@ -24,7 +24,7 @@ const Memorized = () => {
       try {
         const token = localStorage.getItem("authToken");
         if (!token) {
-          setError("لم يتم العثور على التوكن. من فضلك، قم بتسجيل الدخول أولاً.");
+          setError("Token not found. Please log in first.");
           return;
         }
 
@@ -44,10 +44,10 @@ const Memorized = () => {
         console.log("Word List API Response:", JSON.stringify(data, null, 2));
 
         if (response.status === 200 && data.data) {
-          // إضافة is_favourite افتراضي إذا لم يكن موجودًا
+          // Add default is_favourite if not present
           setWords(data.data.map(word => ({ ...word, is_favourite: word.is_favourite || false })));
         } else {
-          setError("فشل في جلب قائمة الكلمات.");
+          setError("Failed to fetch word list.");
         }
       } catch (error) {
         console.error("Error fetching word list:", {
@@ -55,7 +55,7 @@ const Memorized = () => {
           response: error.response?.data,
           status: error.response?.status,
         });
-        setError("حدث خطأ أثناء جلب قائمة الكلمات. حاول مرة أخرى.");
+        setError("An error occurred while fetching the word list. Please try again.");
       } finally {
         setLoading(false);
       }
@@ -64,12 +64,12 @@ const Memorized = () => {
     fetchWordList();
   }, []);
 
-  // دالة حذف كلمة
+  // Delete word function
   const deleteWord = async (wordId) => {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
-        setError("لم يتم العثور على التوكن. من فضلك، قم بتسجيل الدخول أولاً.");
+        setError("Token not found. Please log in first.");
         return;
       }
 
@@ -80,7 +80,7 @@ const Memorized = () => {
         },
       });
 
-      // تحديث الـ state بحذف الكلمة من القائمة
+      // Update state by removing the deleted word
       setWords(words.filter((word) => word.id !== wordId));
       console.log(`Word with ID ${wordId} deleted successfully.`);
     } catch (error) {
@@ -89,16 +89,16 @@ const Memorized = () => {
         response: error.response?.data,
         status: error.response?.status,
       });
-      setError("حدث خطأ أثناء حذف الكلمة. حاول مرة أخرى.");
+      setError("An error occurred while deleting the word. Please try again.");
     }
   };
 
-  // دالة تبديل حالة الـ favourite
+  // Toggle favorite function
   const toggleFavorite = async (wordId) => {
     try {
       const token = localStorage.getItem("authToken");
       if (!token) {
-        setError("لم يتم العثور على التوكن. من فضلك، قم بتسجيل الدخول أولاً.");
+        setError("Token not found. Please log in first.");
         return;
       }
 
@@ -115,11 +115,11 @@ const Memorized = () => {
       );
 
       console.log("Toggle Favorite API Response:", JSON.stringify(response.data, null, 2));
-      // التحقق من وجود is_favourite في الاستجابة
+      // Check if is_favourite is present in the response
       const is_favourite = response.data.is_favourite !== undefined 
         ? response.data.is_favourite 
         : !words.find(word => word.id === wordId).is_favourite;
-      // تحديث حالة is_favourite للكلمة في الـ state
+      // Update is_favourite status in the state
       setWords(
         words.map((word) =>
           word.id === wordId ? { ...word, is_favourite } : word
@@ -132,7 +132,7 @@ const Memorized = () => {
         response: error.response?.data,
         status: error.response?.status,
       });
-      setError(`حدث خطأ أثناء تبديل حالة المفضلة: ${error.message}`);
+      setError(`An error occurred while toggling favorite status: ${error.message}`);
     }
   };
 
@@ -148,11 +148,11 @@ const Memorized = () => {
                 </div>
                 <p className="p">
                   OurStudio is a digital agency UI / UX Design and Website Development located in Ohio, United States of
-                  America OurStudio
+                  America
                 </p>
               </div>
               <div className="frame-9">
-                <div className="text-wrapper-4">تابعنا</div>
+                <div className="text-wrapper-4">Follow Us</div>
                 <div className="frame-10">
                   <div className="frame-11">
                     <img className="img-2" src={face} alt="Facebook" />
@@ -170,27 +170,27 @@ const Memorized = () => {
               </div>
               <div className="frame-12">
                 <div className="div-wrapper">
-                  <div className="text-wrapper-6">عننا</div>
+                  <div className="text-wrapper-6">About Us</div>
                 </div>
                 <div className="frame-13">
-                  <div className="text-wrapper-6">الشروط والأحكام</div>
+                  <div className="text-wrapper-6">Terms and Conditions</div>
                 </div>
                 <div className="frame-13">
-                  <div className="text-wrapper-6">سياسة الخصوصية</div>
+                  <div className="text-wrapper-6">Privacy Policy</div>
                 </div>
               </div>
             </div>
           </div>
           <div className="frame-14">
-            <p className="text-wrapper-7">قائمة الكلمات  الكلمات المحفوظة</p>
+            <p className="text-wrapper-7">Word List Memorized Words</p>
             <div className="frame-15">
               <img className="img-2" src={Sorting} alt="Sort" />
-              <div className="text-wrapper-8">ترتيب حسب</div>
+              <div className="text-wrapper-8">Sort By</div>
             </div>
           </div>
-          {loading && <p>جاري التحميل...</p>}
+          {loading && <p>Loading...</p>}
           {error && <p style={{ color: "red" }}>{error}</p>}
-          {words.length === 0 && !loading && !error && <p>لا توجد كلمات محفوظة متاحة.</p>}
+          {words.length === 0 && !loading && !error && <p>No memorized words available.</p>}
           <div className="frame-16">
             {words.slice(0, 2).map((word) => (
               <div className="word-list-button-wrapper" key={word.id}>
@@ -206,9 +206,9 @@ const Memorized = () => {
                         <div className="frame-10">
                           <div className="text-wrapper-9">{word.original_text}</div>
                           <div className="frame-20">
-                            <div className="text-wrapper-10">النص المترجم:</div>
-                            <p className="text-wrapper-11">{word.translated_text || "لا توجد ترجمة متاحة"}</p>
-                            <div className="text-wrapper-12">اللغة المستهدفة:</div>
+                            <div className="text-wrapper-10">Translated Text:</div>
+                            <p className="text-wrapper-11">{word.translated_text || "No translation available"}</p>
+                            <div className="text-wrapper-12">Target Language:</div>
                             <p className="text-wrapper-13">{word.target_language}</p>
                           </div>
                         </div>
@@ -250,9 +250,9 @@ const Memorized = () => {
                         <div className="frame-10">
                           <div className="text-wrapper-9">{word.original_text}</div>
                           <div className="frame-20">
-                            <div className="text-wrapper-10">النص المترجم:</div>
-                            <p className="text-wrapper-11">{word.translated_text || "لا توجد ترجمة متاحة"}</p>
-                            <div className="text-wrapper-12">اللغة المستهدفة:</div>
+                            <div className="text-wrapper-10">Translated Text:</div>
+                            <p className="text-wrapper-11">{word.translated_text || "No translation available"}</p>
+                            <div className="text-wrapper-12">Target Language:</div>
                             <p className="text-wrapper-13">{word.target_language}</p>
                           </div>
                         </div>

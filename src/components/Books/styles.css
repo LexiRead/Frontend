@@ -73,7 +73,7 @@ body {
     display: grid;
     /* display: flex; */
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* تصميم متجاوب */
-    gap: 20px; 
+    gap: 50px; 
     /* margin-bottom: 30px; */
      margin: 0 9%;
     /* padding: 0 5% 0 5%; */
