@@ -374,7 +374,7 @@ const Translate = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="frame-28">
+                  {/* <div className="frame-28">
                     <div className="frame-29">
                       <div className="text-wrapper-11">More Translations</div>
                     </div>
@@ -438,7 +438,7 @@ const Translate = () => {
                         </>
                       )}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               {error && (
