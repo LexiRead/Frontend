@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/LexiRead/Frontend/static/css/main.9015580c.css",
+    "main.js": "/LexiRead/Frontend/static/js/main.465e2b61.js",
+    "static/js/453.7f20132b.chunk.js": "/LexiRead/Frontend/static/js/453.7f20132b.chunk.js",
+    "static/media/iphone.png": "/LexiRead/Frontend/static/media/iphone.64a611e504dd73d946e7.png",
+    "static/media/image.png": "/LexiRead/Frontend/static/media/image.c39622a64e3a7f88013d.png",
+    "static/media/signup.png": "/LexiRead/Frontend/static/media/signup.37bb740d063d1c102afd.png",
+    "static/media/hello.png": "/LexiRead/Frontend/static/media/hello.cb4b049fd1624d1463eb.png",
+    "static/media/forgetpass.png": "/LexiRead/Frontend/static/media/forgetpass.3413c1f8bbb1cc7eae5e.png",
+    "static/media/login.png": "/LexiRead/Frontend/static/media/login.b2598729f0206e7694e3.png",
+    "static/media/abdo.png": "/LexiRead/Frontend/static/media/abdo.bef71926bd5f662168c0.png",
+    "static/media/account.png": "/LexiRead/Frontend/static/media/account.341c0834677803919f0f.png",
+    "static/media/Frame 1984078263.svg": "/LexiRead/Frontend/static/media/Frame 1984078263.5cc4886012a6bc03ae359e94c0a2077e.svg",
+    "static/media/facebook-01.svg": "/LexiRead/Frontend/static/media/facebook-01.a3a5891f29b471987f66b5d57214fc85.svg",
+    "index.html": "/LexiRead/Frontend/index.html",
+    "static/media/eye.svg": "/LexiRead/Frontend/static/media/eye.9eed6e33103b4cce11ecd77ded9e0a4b.svg",
+    "static/media/google.svg": "/LexiRead/Frontend/static/media/google.ae61ab5befde7b42a79a8687e322f2b1.svg",
+    "main.9015580c.css.map": "/LexiRead/Frontend/static/css/main.9015580c.css.map",
+    "main.465e2b61.js.map": "/LexiRead/Frontend/static/js/main.465e2b61.js.map",
+    "453.7f20132b.chunk.js.map": "/LexiRead/Frontend/static/js/453.7f20132b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9015580c.css",
+    "static/js/main.465e2b61.js"
+  ]
+}
